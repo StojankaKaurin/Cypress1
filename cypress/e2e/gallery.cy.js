@@ -30,3 +30,33 @@ describe("gallery test", () =>{
     
 });
 });
+
+
+describe("login test", ()=> {
+    beforeEach('visit app and click the login link',()=>{
+        cy.visit("/");
+        authLogin.loginLink.click();
+        cy.url().should("include","/login");
+        authLogin.loginPageHeading
+        .should("be.visible")
+        .and("have.text","Please login");
+    });
+    it.only("login with invalid email address", () => {
+        authLogin.login(credentials.invalidEmail, credentials.validPassword);
+        cy.url().should("include", "/login");
+        authLogin.errorMessage
+          .should("be.visible")
+          .and("have.text", "Bad Credentials")
+          .and("have.css","background-color", "rgb(248, 215,218");
+      });
+    
+      it("login with valid credentials", () => {
+        authLogin.login(credentials.validEmail, credentials.validPassword);
+        cy.url().should("not.include", "/login");
+       
+        
+      });
+    });
+
+
+
