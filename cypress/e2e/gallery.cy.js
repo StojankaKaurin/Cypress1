@@ -41,7 +41,7 @@ describe("login test", ()=> {
         .should("be.visible")
         .and("have.text","Please login");
     });
-    it.only("login with invalid email address", () => {
+    it("login with invalid email address", () => {
         authLogin.login(credentials.invalidEmail, credentials.validPassword);
         cy.url().should("include", "/login");
         authLogin.errorMessage
@@ -56,6 +56,7 @@ describe("login test", ()=> {
        
         
       });
+     
     });
 
 

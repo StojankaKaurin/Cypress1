@@ -23,3 +23,36 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+const { method } = require("cypress/types/bluebird");
+const { first } = require("cypress/types/lodash");
+
+Cypress.Commands.add("loginViaBackend",(emailParam, passwordParam));{
+    cy.request({
+        method:"POST"
+        url:"https://gallery-api.vivifyideas.com/api/auth/login",
+        body:{
+            email:emailParam
+            password:passwordParam,
+        },
+    })
+    .its("body")
+    .then(response) ; {
+        window.localStorage.setItem("token",response.access_token);
+    });
+});
+Cypress.Commands.add(
+   "registerViaBackend" ,
+   (email, firstname, lastname, password) => {
+    cy.request{
+        method:"POST",
+        url:"",
+        body;{
+            email:email,
+            first_name: firstname,
+            last_name: lastaname,
+
+        }
+    }
+   }
+)
